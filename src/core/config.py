@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     
     # Google Gemini Configuration
     gemini_api_key: str = Field(default="", description="Google Gemini API key")
-    gemini_model: str = Field(default="gemini-pro", description="Gemini model name")
+    gemini_model: str = Field(default="gemini-2.5-flash", description="Gemini model name")
     gemini_temperature: float = Field(default=0.1, ge=0.0, le=2.0)
     
     # Local LLM Alternative
