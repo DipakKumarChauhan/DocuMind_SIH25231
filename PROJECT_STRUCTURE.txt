@@ -1,0 +1,105 @@
+DocuMind_cursor/
+│
+├── 📄 Configuration & Setup
+│   ├── requirements.txt         # Python dependencies
+│   ├── .env.example             # Environment template
+│   ├── .gitignore               # Git ignore rules
+│   ├── setup.py                 # Setup script
+│   └── install.sh               # Quick install script
+│
+├── 📚 Documentation
+│   ├── README.md                # Project overview
+│   ├── QUICKSTART.md            # Quick start guide
+│   ├── ARCHITECTURE.md          # Technical architecture
+│   ├── PROJECT_SUMMARY.md       # Executive summary
+│   └── DEMO_CHECKLIST.md        # Demo preparation
+│
+├── 🎯 Entry Points
+│   ├── ui/streamlit_app.py      # Streamlit web UI
+│   ├── cli.py                   # Command-line interface
+│   └── example.py               # API usage examples
+│
+├── 🧠 Core Application (src/)
+│   │
+│   ├── core/                    # Core utilities
+│   │   ├── config.py            # Settings management
+│   │   ├── logger.py            # Logging setup
+│   │   └── exceptions.py        # Custom exceptions
+│   │
+│   ├── document_processing/     # Document handling
+│   │   ├── extractors.py        # PDF/DOCX/TXT extraction
+│   │   ├── chunker.py           # Smart text chunking
+│   │   └── preprocessor.py      # Text normalization
+│   │
+│   ├── embeddings/              # Vector embeddings
+│   │   ├── generator.py         # Sentence-transformers
+│   │   └── cache.py             # Embedding cache
+│   │
+│   ├── vector_store/            # Vector database
+│   │   ├── client.py            # ChromaDB wrapper
+│   │   └── indexer.py           # Document indexing
+│   │
+│   ├── retrieval/               # Search & ranking
+│   │   ├── retriever.py         # Semantic search
+│   │   └── reranker.py          # Result reranking
+│   │
+│   ├── generation/              # LLM integration
+│   │   ├── llm_client.py        # OpenAI/Ollama client
+│   │   ├── prompt_templates.py  # RAG prompts
+│   │   └── citation_parser.py   # Citation extraction
+│   │
+│   └── api/                     # Service layer
+│       ├── service.py           # RAG orchestrator
+│       └── models.py            # Pydantic models
+│
+├── 🧪 Tests
+│   ├── test_extractors.py       # Extraction tests
+│   ├── test_chunker.py          # Chunking tests
+│   └── test_retrieval.py        # Retrieval tests
+│
+└── 💾 Data (created at runtime)
+    ├── uploads/                 # Uploaded documents
+    ├── cache/                   # Embedding cache
+    ├── vectordb/                # ChromaDB storage
+    └── logs/                    # Application logs
+
+COMPONENT INTERACTION MAP:
+═══════════════════════════════════════════════════════════════════
+
+User Input (UI/CLI/API)
+         │
+         ▼
+    RAGService (Orchestrator)
+         │
+    ┌────┴────┐
+    │         │
+    ▼         ▼
+ Indexing   Querying
+    │         │
+    ├─1. Extract text (extractors.py)
+    ├─2. Chunk text (chunker.py)         1. Embed query (generator.py)
+    ├─3. Generate embeddings              2. Search vectors (retriever.py)
+    ├─4. Store in ChromaDB                3. Rerank results (reranker.py)
+    │                                     4. Build prompt (prompt_templates.py)
+    │                                     5. Call LLM (llm_client.py)
+    │                                     6. Parse citations (citation_parser.py)
+    │                                     │
+    └─────────────────────────────────────┴─→ Response with Citations
+
+KEY TECHNOLOGIES:
+═══════════════════════════════════════════════════════════════════
+• Embeddings: sentence-transformers/all-MiniLM-L6-v2 (384-dim)
+• Vector DB: ChromaDB (persistent, local)
+• LLM: OpenAI GPT-3.5/4 or Local (Ollama)
+• UI: Streamlit
+• Validation: Pydantic
+• Logging: Loguru
+• Testing: Pytest
+
+MODULAR DESIGN BENEFITS:
+═══════════════════════════════════════════════════════════════════
+✓ Swappable components (easy to replace ChromaDB → Pinecone)
+✓ Testable in isolation (dependency injection)
+✓ Clear separation of concerns
+✓ Easy to extend (add new document types, embeddings, etc.)
+✓ Production-ready (error handling, logging, validation)
