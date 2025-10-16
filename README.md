@@ -18,6 +18,7 @@ A production-ready Retrieval-Augmented Generation (RAG) system with citation-bas
 ## 🌟 Features
 
 ### Backend
+
 - 📄 **Multi-format Support** - PDF, DOCX, TXT document processing
 - 🔍 **Semantic Search** - Sentence-transformers embeddings (384-dim)
 - 🎯 **Citation-Based Answers** - No hallucinations, fully traceable sources
@@ -27,6 +28,7 @@ A production-ready Retrieval-Augmented Generation (RAG) system with citation-bas
 - 📊 **Smart Chunking** - Sentence-aware with overlap for context preservation
 
 ### Frontend
+
 - ⚛️ **React + Vite** - Fast, modern development experience
 - 🎨 **Tailwind CSS** - Beautiful, responsive UI
 - 📤 **File Upload** - Drag & drop document upload
@@ -82,6 +84,7 @@ nano .env  # or use any text editor
 ```
 
 Add your API key to `.env`:
+
 ```env
 GOOGLE_API_KEY=your_gemini_api_key_here
 ```
@@ -112,6 +115,7 @@ python -m uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Backend will be available at:
+
 - **API:** http://localhost:8000
 - **Swagger Docs:** http://localhost:8000/docs
 - **ReDoc:** http://localhost:8000/redoc
@@ -127,6 +131,7 @@ npm run dev
 ```
 
 Frontend will be available at:
+
 - **App:** http://localhost:3000
 
 ### 5. Use the Application
@@ -311,28 +316,33 @@ pytest --cov=src tests/
 ## 💡 Key Design Decisions
 
 ### Chunking Strategy
+
 - **Chunk size:** 300 tokens (~200-400 words)
 - **Overlap:** 50 tokens to preserve context
 - **Method:** Sentence-aware splitting
 - **Why:** Balance between precision (small chunks) and context (overlap)
 
 ### Embedding Model
+
 - **Model:** `sentence-transformers/all-MiniLM-L6-v2`
 - **Dimension:** 384
 - **Why:** Fast, lightweight, excellent semantic understanding
 
 ### Vector Store
+
 - **Primary:** ChromaDB with persistence
 - **Why:** Metadata filtering + persistence out of the box
 - **Location:** `data/vectordb/`
 
 ### Retrieval
+
 - **Top-K:** 5 chunks (configurable)
 - **Similarity:** Cosine similarity
 - **Threshold:** 0.3 minimum score
 - **Metadata:** file_name, page, chunk_id for precise citation
 
 ### LLM Integration
+
 - **Default:** Google Gemini 2.5 Flash
 - **Alternatives:** OpenAI GPT-3.5/4, Local models (Ollama)
 - **Prompt:** System prompt enforces citation format [1], [2]
@@ -342,6 +352,7 @@ pytest --cov=src tests/
 ## 🚧 Roadmap
 
 ### ✅ Phase 1: Text-based RAG (Complete)
+
 - [x] PDF, DOCX, TXT extraction
 - [x] Semantic chunking & indexing
 - [x] Citation-based answers
@@ -350,6 +361,7 @@ pytest --cov=src tests/
 - [x] Real-time query interface
 
 ### 🔄 Phase 2: Enhanced Features (In Progress)
+
 - [ ] Multi-user support
 - [ ] Authentication & authorization
 - [ ] Chat history persistence
@@ -358,6 +370,7 @@ pytest --cov=src tests/
 - [ ] Export results (PDF/TXT)
 
 ### 🔮 Phase 3: Multimodal Support (Future)
+
 - [ ] Image support with OCR
 - [ ] CLIP embeddings for images
 - [ ] Audio transcription (Whisper)
@@ -391,18 +404,22 @@ Contributions are welcome! Please follow these steps:
 ### Backend Issues
 
 **Issue:** Module not found errors
+
 ```bash
 # Solution: Reinstall dependencies
 pip install -r requirements.txt
 ```
 
 **Issue:** ChromaDB telemetry errors (safe to ignore)
+
 ```
 Failed to send telemetry event...
 ```
+
 These are warnings and don't affect functionality.
 
 **Issue:** Port 8000 already in use
+
 ```bash
 # Solution: Kill process or use different port
 python -m uvicorn app:app --port 8001 --reload
@@ -411,11 +428,13 @@ python -m uvicorn app:app --port 8001 --reload
 ### Frontend Issues
 
 **Issue:** Cannot connect to backend
+
 - Ensure backend is running on port 8000
 - Check `.env` file has correct `VITE_API_URL`
 - Verify CORS is enabled in backend
 
 **Issue:** npm install fails
+
 ```bash
 # Solution: Clear cache and reinstall
 rm -rf node_modules package-lock.json
@@ -423,6 +442,7 @@ npm install
 ```
 
 **Issue:** Port 3000 already in use
+
 ```bash
 # Solution: Vite will auto-select next available port
 # Or specify port in vite.config.js
@@ -456,6 +476,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For issues, questions, or suggestions:
+
 - Open an issue on [GitHub](https://github.com/DipakKumarChauhan/DocuMind_SIH25231/issues)
 - Email: dipak@documind.ai
 
